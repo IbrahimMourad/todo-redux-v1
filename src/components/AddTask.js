@@ -1,18 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo, addText } from "./actions";
+import { addTodo } from "./actions";
 
 import "./AddTask.css";
 
-const Task = ({ addText, text, selected, addTodo }) => {
-  const handleChange = (e) => addText(e.target.value);
+const Task = ({ text, addTodo }) => {
+  const handleChange = (e) => {
+    return e.target.value;
+  };
   const handleSubmit = (e) => {
+    const val = document.querySelector("#my-input");
     e.preventDefault();
-    addTodo(text);
+    addTodo(val.value);
+    val.value = "";
   };
   return (
     <form onSubmit={handleSubmit}>
       <input
+        id="my-input"
         type="text"
         name="todo"
         value={text}
@@ -25,11 +30,8 @@ const Task = ({ addText, text, selected, addTodo }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addTodo: (todo) => dispatch(addTodo(todo)),
-  addText: (value) => dispatch(addText(value)),
-  // editAddTodo: (obj) => dispatch(editAddTodo(obj)),
 });
-const mapStateToProps = ({ text, selected }) => ({
+const mapStateToProps = ({ text }) => ({
   text,
-  selected,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

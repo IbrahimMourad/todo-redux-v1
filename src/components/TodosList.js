@@ -6,9 +6,16 @@ import Task from "./Task";
 const TodosList = ({ todos }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {todos.map((todo, i) => (
-        <Task key={i} todo={todo} idx={i} />
-      ))}
+      {todos.map((todo, idx) => {
+        return (
+          <Task
+            key={todo.key}
+            todo={todo.text}
+            idx={idx}
+            isDone={todo.isDone}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -16,4 +23,5 @@ const TodosList = ({ todos }) => {
 const mapStateToProps = (state) => ({
   todos: state.todos,
 });
+
 export default connect(mapStateToProps)(TodosList);

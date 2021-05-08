@@ -1,8 +1,3 @@
-export const addText = (value) => ({
-  type: "ADD_TEXT",
-  payload: value,
-});
-
 export const addTodo = (todo) => ({
   type: "ADD_TODO",
   payload: todo,
@@ -13,9 +8,9 @@ export const deleteTodo = (key) => ({
   payload: key,
 });
 
-export const editTodo = (key) => ({
+export const editTodo = (todo) => ({
   type: "EDIT_TODO",
-  payload: key,
+  payload: todo,
 });
 
 export const editAddTodo = (obj) => ({

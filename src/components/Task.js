@@ -2,7 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { deleteTodo, editTodo } from "./actions";
 
-const Task = ({ todo, idx, deleteTodo, editTodo, selected, text }) => {
+const Task = ({ todo, idx, isDone, deleteTodo, editTodo, selected }) => {
+  // console.log(selected.text, "text");
+
+  // console.log(todo, "todoooooooo");
   return (
     <div
       style={{
@@ -14,7 +17,13 @@ const Task = ({ todo, idx, deleteTodo, editTodo, selected, text }) => {
         margin: "5px",
       }}
     >
-      <div onClick={() => editTodo(idx)}>{selected === idx ? text : todo}</div>
+      <input
+        type="text"
+        value={selected.text}
+        onChange={(e) =>
+          editTodo({ text: e.target.value, key: idx, isDone: isDone })
+        }
+      />
       <button onClick={() => deleteTodo(idx)}>X</button>
     </div>
   );
@@ -24,8 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
   editTodo: (key) => dispatch(editTodo(key)),
 });
 
-const mapStateToProps = (state) => ({
-  text: state.text,
-  selected: state.selected,
+const mapStateToProps = (state, ownProps) => ({
+  selected: state.todos[ownProps.idx],
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

@@ -1,29 +1,49 @@
+let counterId = -1;
 const initState = {
   todos: [],
-  text: "",
-  selected: undefined,
+  currentItem: {
+    text: "",
+    key: ++counterId,
+    isDone: false,
+  },
 };
 
 export const addTodo = (state = initState, action) => {
   switch (action.type) {
-    case "ADD_TEXT":
-      return { ...state, text: action.payload };
     case "ADD_TODO":
-      return { ...state, todos: state.todos.concat(action.payload), text: "" };
+      const newItem = [
+        {
+          text: action.payload,
+          key: counterId++,
+          isDone: false,
+        },
+      ];
+      return {
+        ...state,
+        todos: state.todos.concat(newItem),
+        // currentItem: cleanItem,
+      };
     case "DELETE_TODO":
       return {
         ...state,
         todos: state.todos.filter((todo, i) => i !== action.payload),
       };
     case "EDIT_TODO":
+      let selectedKey = action.payload.key;
       return {
         ...state,
-        text: state.todos[action.payload],
-        selected: action.payload,
+        todos: state.todos.map((item) => {
+          if (item.key === selectedKey) {
+            item.text = action.payload.text;
+            item.key = action.payload.key;
+            item.isDone = action.payload.isDone;
+          }
+          return item;
+        }),
       };
 
     case "DELETE_ALL":
-      return { ...state, todos: [], text: "" };
+      return { ...state, todos: [] };
     default:
       return state;
   }
