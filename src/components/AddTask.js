@@ -16,14 +16,18 @@ const Task = ({ text, addTodo }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        id="my-input"
-        type="text"
-        name="todo"
-        value={text}
-        placeholder="Enter your todo..."
-        onChange={handleChange}
-      />
+      <div className="todo-item" style={{ backgroundColor: "#9ddfd3" }}>
+        <input
+          className="add-task"
+          id="my-input"
+          type="text"
+          name="todo"
+          value={text}
+          placeholder="Enter your todo..."
+          onChange={handleChange}
+          autocomplete="off"
+        />
+      </div>
     </form>
   );
 };

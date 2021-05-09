@@ -1,8 +1,25 @@
-input {
-    background: border-box;
-    color: #ffffffa6;
-    border-top: none;
-    width: 200px;
-    padding: 5px;
-    margin-bottom: 1rem;
+.add-task {
+    border: none;
+    background: transparent;
+    color: #fff;
+    width: 300px;
+    margin: 5px auto;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    overflow: visible;
+    padding: 8px 5px;
+    height: 41px;
+}
+
+.add-task:focus {
+    outline: none;
+    cursor: text;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1;
+    /* Firefox */
 }

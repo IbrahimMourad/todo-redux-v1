@@ -13,8 +13,8 @@ export const editTodo = (todo) => ({
   payload: todo,
 });
 
-export const editAddTodo = (obj) => ({
-  type: "EDIT_ADD_TODO",
+export const setDone = (obj) => ({
+  type: "SET_DONE",
   payload: obj,
 });
 

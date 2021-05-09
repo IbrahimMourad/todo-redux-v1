@@ -41,7 +41,21 @@ export const addTodo = (state = initState, action) => {
           return item;
         }),
       };
+    case "SET_DONE":
+      console.log(state);
+      // let selectedKey = action.payload.key;
 
+      return {
+        ...state,
+        todos: state.todos.map((item) => {
+          if (item.key === action.payload.key) {
+            item.text = action.payload.text;
+            item.key = action.payload.key;
+            item.isDone = !action.payload.isDone;
+          }
+          return item;
+        }),
+      };
     case "DELETE_ALL":
       return { ...state, todos: [] };
     default:

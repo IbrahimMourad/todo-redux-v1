@@ -1,0 +1,43 @@
+.todo-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    color: #fff;
+    width: 300px;
+    margin: 5px auto;
+    height: 50px;
+    background-color: #31326f;
+    border-radius: 5px;
+}
+
+.task-item, .checkbox, .delete-btn {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+    overflow: visible;
+    padding: 10px;
+    height: 41px;
+    display: inline-block;
+}
+
+.task-item {
+    width: 80%;
+}
+
+.task-item:hover {
+    cursor: text;
+    caret-color: #FFF;
+}
+
+.task-item:focus {
+    outline: none;
+    border-bottom: 1px solid #fff;
+}
+
+.checkbox {
+    width: 25px;
+}

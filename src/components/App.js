@@ -12,7 +12,9 @@ const App = ({ deleteAll }) => {
       <AddTask />
       <TodosList />
       <div>
-        <button onClick={deleteAll}>Delete All</button>
+        <button className="deleteall-btn" onClick={deleteAll}>
+          Delete All <i class="fas fa-trash"></i>
+        </button>
       </div>
     </div>
   );

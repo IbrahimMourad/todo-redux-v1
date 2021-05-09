@@ -2,10 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Task from "./Task";
+import "./TodosList.css";
 
 const TodosList = ({ todos }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className=" list">
       {todos.map((todo, idx) => {
         return (
           <Task

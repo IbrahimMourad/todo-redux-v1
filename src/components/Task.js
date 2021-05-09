@@ -1,36 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteTodo, editTodo } from "./actions";
-
-const Task = ({ todo, idx, isDone, deleteTodo, editTodo, selected }) => {
+import { deleteTodo, editTodo, setDone } from "./actions";
+import "./Task.css";
+const Task = ({ idx, isDone, deleteTodo, editTodo, selected, setDone }) => {
   // console.log(selected.text, "text");
 
   // console.log(todo, "todoooooooo");
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        border: "1px solid #ffffffa6",
-        padding: "5px",
-        margin: "5px",
-      }}
-    >
+    <div className="todo-item">
       <input
+        className="checkbox"
+        type="checkbox"
+        checked={selected.isDone}
+        onChange={() => setDone({ key: idx, isDone: isDone })}
+      />
+      <input
+        className="task-item"
         type="text"
+        autocomplete="off"
         value={selected.text}
         onChange={(e) =>
           editTodo({ text: e.target.value, key: idx, isDone: isDone })
         }
       />
-      <button onClick={() => deleteTodo(idx)}>X</button>
+      <button className="delete-btn" onClick={() => deleteTodo(idx)}>
+        <i class="fas fa-trash"></i>
+      </button>
     </div>
   );
 };
 const mapDispatchToProps = (dispatch) => ({
   deleteTodo: (key) => dispatch(deleteTodo(key)),
-  editTodo: (key) => dispatch(editTodo(key)),
+  editTodo: (todo) => dispatch(editTodo(todo)),
+  setDone: (obj) => dispatch(setDone(obj)),
 });
 
 const mapStateToProps = (state, ownProps) => ({
